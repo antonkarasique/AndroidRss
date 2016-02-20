@@ -4,16 +4,6 @@
     android:layout_height="match_parent"
     android:background="#41414e">
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/imageView"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:contentDescription="@string/pic"
-        android:padding="15dp" />
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -21,8 +11,30 @@
         android:text="Large Text"
         android:id="@+id/textViewTitle"
         android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/imageView"
-        android:layout_toEndOf="@+id/imageView" />
+        android:layout_centerHorizontal="true"
+        android:padding="2dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Small Text"
+        android:id="@+id/textViewPubDate"
+        android:layout_gravity="right"
+        android:padding="2dp"
+        android:layout_below="@+id/textViewDescription"
+        android:layout_alignRight="@+id/textViewDescription"
+        android:layout_alignEnd="@+id/textViewDescription" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/pic"
+        android:id="@+id/imageView"
+        android:layout_below="@+id/textViewTitle"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:padding="7dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -30,17 +42,10 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Medium Text"
         android:id="@+id/textViewDescription"
-
-        android:layout_below="@+id/textViewTitle"
+        android:background="#c9565667"
+        android:layout_alignTop="@+id/imageView"
         android:layout_toRightOf="@+id/imageView"
-        android:layout_toEndOf="@+id/imageView" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Small Text"
-        android:id="@+id/textViewPubDate"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_toEndOf="@+id/imageView"
+        android:padding="20dp" />
+
 </RelativeLayout>
