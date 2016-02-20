@@ -106,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
         SQLDb = sql.getWritableDatabase();
 
 //Вытаскиваем записи из БД в обратном порядке(с конца)
-        String query = "SELECT * FROM news ORDER BY +"+ Sql._ID +" DESC";
+        String query = "SELECT * FROM news ORDER BY "+ Sql._ID +" DESC";
         Cursor cursor = SQLDb.rawQuery(query, null); /*=SQLDb.query("news", new String[]{ Sql.LINK_COLUMN, Sql.DESC_COLUMN, Sql.IMAGE_COLUMN, Sql.DATE_COLUMN, Sql.TITLE_COLUMN},
                                                                      null, null, null, null, null);*/
 
