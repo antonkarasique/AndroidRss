@@ -7,14 +7,17 @@ import org.simpleframework.xml.Root;
 /**
  * Created by Anton on 17.02.2016.
  */
-@Root(name = "image" , strict = false)
+@Root(name = "image")
 public class Img {
 
-    @Element(name = "title")
+    @Element
     String title;
 
-    @Element(name = "url")
+    @Element
     String url;
+
+    @Element
+    String link;
 
     public String getLink() {
         return link;
@@ -28,6 +31,5 @@ public class Img {
         return title;
     }
 
-    @Element(name = "link")
-    String link;
+
 }

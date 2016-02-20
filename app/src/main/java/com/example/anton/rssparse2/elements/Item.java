@@ -10,16 +10,16 @@ import org.simpleframework.xml.Root;
 @Root(name = "item")
 public class Item {
 
-    @Element(name = "title")
+    @Element
     String title;
 
-    @Element(name = "link")
+    @Element
     String link;
 
-    @Element(name = "description")
+    @Element
     String description;
 
-    @Element(name = "enclosure")
+    @Element
     Enclosure enclosure;
 
     public Item(String title, String link, String description, Enclosure enclosure, String pubDate) {

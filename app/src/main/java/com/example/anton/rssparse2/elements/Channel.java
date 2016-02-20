@@ -10,25 +10,32 @@ import java.util.List;
 /**
  * Created by Anton on 17.02.2016.
  */
-@Root(name = "channel")
+@Root(name = "channel", strict = false)
 public class Channel {
 
-    @Element(name = "title")
+    @ElementList(name = "item", inline = true, required = false)
+    List<Item> items;
+
+    public List<Item> getItems() {
+        return items;
+    }
+
+    /*@Element
     String title;
 
-    @Element(name = "link")
+    @Element
     String link;
 
-    @Element(name = "description")
+    @Element
     String description;
 
-    @Element(name = "lastBuildDate")
+    @Element
     String lastBuildDate;
 
-    @Element(name = "ttl")
+    @Element
     String ttl;
 
-    @Element(name = "image")
+    @Element
     Img image;
 
     public String getTitle() {
@@ -53,12 +60,9 @@ public class Channel {
 
     public Img getImage() {
         return image;
-    }
+    }*/
 
-    public List<Item> getItems() {
-        return items;
-    }
 
-    @ElementList(name = "item", inline = true, required = false)//inline = true
-    List<Item> items;
+
+
 }

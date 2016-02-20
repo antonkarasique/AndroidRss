@@ -62,23 +62,24 @@ public class MainActivity extends AppCompatActivity {
                     items.add(0, i);
 
                 }
-                
 
                 //Добавляем в БД title, описание, дату, ссылку на новость и ссылку на картинку из List<Item> items
+
                 for (Item i: items){
-                    sql = new Sql(this, "rss.db", null, 1);
-                    SQLDb = sql.getWritableDatabase();
+                        sql = new Sql(this, "rss.db", null, 1);
+                        SQLDb = sql.getWritableDatabase();
 
-                    ContentValues newValues = new ContentValues();
-                    newValues.put(Sql.TITLE_COLUMN, i.getTitle());
-                    newValues.put(Sql.DESC_COLUMN, i.getDescription());
-                    newValues.put(Sql.IMAGE_COLUMN, i.getEnclosure().getUrl());
-                    newValues.put(Sql.LINK_COLUMN, i.getLink());
-                    newValues.put(Sql.DATE_COLUMN, i.getPubDate());
+                        ContentValues newValues = new ContentValues();
+                        newValues.put(Sql.TITLE_COLUMN, i.getTitle());
+                        newValues.put(Sql.DESC_COLUMN, i.getDescription());
+                        newValues.put(Sql.IMAGE_COLUMN, i.getEnclosure().getUrl());
+                        newValues.put(Sql.LINK_COLUMN, i.getLink());
+                        newValues.put(Sql.DATE_COLUMN, i.getPubDate());
 
-                    //вставляем полученные данные в таблицу news
-                    SQLDb.insert("news", null, newValues);
-                    SQLDb.close();
+                        //вставляем полученные данные в таблицу news
+
+                        SQLDb.insert("news", null, newValues);
+                        SQLDb.close();
                 }
 
                 //Рефрешим наш активити с новыми новостями
@@ -101,7 +102,6 @@ public class MainActivity extends AppCompatActivity {
 //тут будут новости вытаскиваемые из БД
         final List<Item> items = new ArrayList<>();
 
-
         sql = new Sql(this, "rss.db", null, 1);
         SQLDb = sql.getWritableDatabase();
 
@@ -116,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
             String date = cursor.getString(cursor.getColumnIndex(Sql.DATE_COLUMN));
             String image = cursor.getString(cursor.getColumnIndex(Sql.IMAGE_COLUMN));
             String link = cursor.getString(cursor.getColumnIndex(Sql.LINK_COLUMN));
-            Enclosure enclosure = new Enclosure(image, "bla", "bla");
+            Enclosure enclosure = new Enclosure(image);
             Item item = new Item(title, link, desc, enclosure, date);
             items.add(item);
         }
