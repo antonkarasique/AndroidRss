@@ -54,11 +54,13 @@ public class NewsAdapter extends BaseAdapter {
             view = layoutInflater.inflate(R.layout.news_adapter, parent, false);
         }
 
+        //получаем элементы лэйаута
         TextView title = (TextView) view.findViewById(R.id.textViewTitle);
         TextView body = (TextView) view.findViewById(R.id.textViewDescription);
         TextView date = (TextView) view.findViewById(R.id.textViewPubDate);
         ImageView image = (ImageView) view.findViewById(R.id.imageView);
 
+        //присваеваем элементам значения
         Picasso.with(parent.getContext())
                 .load(newsList.get(position).getEnclosure().getUrl())
                 .resize(200, 150)

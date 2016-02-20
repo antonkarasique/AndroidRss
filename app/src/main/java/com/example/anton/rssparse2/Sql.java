@@ -6,11 +6,10 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.provider.BaseColumns;
 
-/**
- * Created by Anton on 18.02.2016.
- */
+
 public class Sql extends SQLiteOpenHelper implements BaseColumns {
-//
+
+//DATE_COLUMN - уникальная колонка для того что б новости не повторялись
     private static final String DATABASE_NAME = "rss.db";
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_TABLE = "news";

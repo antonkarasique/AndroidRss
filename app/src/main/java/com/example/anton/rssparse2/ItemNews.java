@@ -29,7 +29,7 @@ public class ItemNews extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
-//получаем первый класс с именем text в котором содержится тело новости
+//получаем первый класс с именем text в котором содержится тело новости (из документа)
         Element newsText = document.getElementsByClass("text").first();
 
 //передаем в TextView  title и саму новость
