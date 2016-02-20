@@ -62,8 +62,7 @@ public class MainActivity extends AppCompatActivity {
                     items.add(0, i);
 
                 }
-
-                //news.channel.getItems();
+                
 
                 //Добавляем в БД title, описание, дату, ссылку на новость и ссылку на картинку из List<Item> items
                 for (Item i: items){
