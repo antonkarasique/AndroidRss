@@ -3,7 +3,6 @@ package com.example.anton.rssparse2;
 
 import android.content.ContentValues;
 import android.content.Intent;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.support.v4.app.FragmentManager;
@@ -91,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
                 return true;
 
 
- //Удаляем или добавляем фрагмент с курсом валют по пункту меню.
+ //Кнопка показать/спрятать фрагмент с курсом валют
             case R.id.hideCourse:
                 if (item.getTitle().equals("Hide course")){
                     FragmentManager manager = getSupportFragmentManager();
