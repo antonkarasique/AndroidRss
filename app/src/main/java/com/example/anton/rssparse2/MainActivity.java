@@ -1,21 +1,20 @@
 package com.example.anton.rssparse2;
 
+
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ListView;
 
-import com.example.anton.rssparse2.adapter.NewsAdapter;
-import com.example.anton.rssparse2.elements.Enclosure;
 import com.example.anton.rssparse2.elements.Item;
+import com.example.anton.rssparse2.fragments.Course;
 
 import org.simpleframework.xml.Serializer;
 import org.simpleframework.xml.core.Persister;
@@ -47,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
             case R.id.refresh:
 
                 //парсим RSS
+                getPage = new GetPage();
                 Serializer serializer = new Persister();
                 getPage.execute("http://news.liga.net/all/rss.xml"); //получаем rss.xml через AsyncTask
 
@@ -95,51 +95,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.add(R.id.container, new Course());
+        transaction.commit();
 
-        getPage = new GetPage();
-        news = new News();
-
-//тут будут новости вытаскиваемые из БД
-        final List<Item> items = new ArrayList<>();
-
-        sql = new Sql(this, "rss.db", null, 1);
-        SQLDb = sql.getWritableDatabase();
-
-//Вытаскиваем записи из БД в обратном порядке(с конца)
-        String query = "SELECT * FROM news ORDER BY "+ Sql._ID +" DESC";
-        Cursor cursor = SQLDb.rawQuery(query, null); /*=SQLDb.query("news", new String[]{ Sql.LINK_COLUMN, Sql.DESC_COLUMN, Sql.IMAGE_COLUMN, Sql.DATE_COLUMN, Sql.TITLE_COLUMN},
-                                                                     null, null, null, null, null);*/
-
-        while (cursor.moveToNext()) {
-            String title = cursor.getString(cursor.getColumnIndex(Sql.TITLE_COLUMN));
-            String desc = cursor.getString(cursor.getColumnIndex(Sql.DESC_COLUMN));
-            String date = cursor.getString(cursor.getColumnIndex(Sql.DATE_COLUMN));
-            String image = cursor.getString(cursor.getColumnIndex(Sql.IMAGE_COLUMN));
-            String link = cursor.getString(cursor.getColumnIndex(Sql.LINK_COLUMN));
-            Enclosure enclosure = new Enclosure(image);
-            Item item = new Item(title, link, desc, enclosure, date);
-            items.add(item);
-        }
-        cursor.close();
-
-//передаем массив новостей в адаптер
-        if (items != null) {
-            NewsAdapter na = new NewsAdapter(getApplicationContext(), items);
-            ListView listView = (ListView) findViewById(R.id.listView);
-            listView.setAdapter(na);
-
-//Открываем новость по клику в списке
-            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    Item item = items.get(position);
-                    String url = item.getLink();
-                    Intent intent = new Intent(getApplicationContext(), ItemNews.class);
-                    intent.putExtra("url", url);
-                    startActivity(intent);
-                }
-            });
-        }
 
     }
 }

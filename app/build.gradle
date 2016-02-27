@@ -28,6 +28,7 @@ dependencies {
         exclude group: 'xpp3', module: 'xpp3'
         compile 'com.squareup.picasso:picasso:2.5.2'
         compile 'org.jsoup:jsoup:1.8.+'
+        compile "com.google.code.gson:gson:2.+"
     }
 
 }
