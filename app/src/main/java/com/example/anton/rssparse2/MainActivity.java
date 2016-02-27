@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     private News news;
     private Sql sql;
     private SQLiteDatabase SQLDb;
+    private Course course;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -39,10 +40,11 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-    //Кнопка refresh в меню которая будет обновлять ленту добавляя новые новости в БД
+//Menu
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
+//Кнопка refresh в меню которая будет обновлять ленту добавляя новые новости в БД
             case R.id.refresh:
 
                 //парсим RSS
@@ -87,6 +89,26 @@ public class MainActivity extends AppCompatActivity {
                 finish();
                 startActivity(intent);
                 return true;
+
+
+ //Удаляем или добавляем фрагмент с курсом валют по пункту меню.
+            case R.id.hideCourse:
+                if (item.getTitle().equals("Hide course")){
+                    FragmentManager manager = getSupportFragmentManager();
+                    FragmentTransaction transaction = manager.beginTransaction();
+                    transaction.remove(course);
+                    transaction.commit();
+                    item.setTitle("Show course");
+                } else {
+                    FragmentManager manager = getSupportFragmentManager();
+                    FragmentTransaction transaction = manager.beginTransaction();
+                    transaction.add(R.id.course_fragment, course);
+                    transaction.commit();
+                    item.setTitle("Hide course");
+
+                }
+
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -96,10 +118,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //Динамически добавляем фрагмент
+        course = new Course();
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
-        transaction.add(R.id.course_fragment, new Course());
+        transaction.add(R.id.course_fragment, course);
         transaction.commit();
+
 
 
     }

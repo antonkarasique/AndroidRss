@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Liga.net RSS parser</string>
     <string name="pic">pic</string>
-    <string name="refresh">refresh</string>
+    <string name="refresh">Refresh</string>
+    <string name="hideCourse">Hide course</string>
 
 </resources>
