@@ -51,9 +51,9 @@ public class Course extends Fragment {
         TextView usd = (TextView) getActivity().findViewById(R.id.TextViewUSD);
         TextView eur = (TextView) getActivity().findViewById(R.id.textViewEUR);
 
-        uah.setText("EUR=" + json[0].buy);
-        usd.setText("RUR=" + json[1].buy);
-        eur.setText("USD=" + json[2].buy);
+        uah.setText(json[0].ccy+"=" + json[0].buy);
+        usd.setText(json[1].ccy+"=" + json[1].buy);
+        eur.setText(json[2].ccy+"=" + json[2].buy);
 
     }
 
