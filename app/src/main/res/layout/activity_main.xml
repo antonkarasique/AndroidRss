@@ -7,12 +7,12 @@
     android:id="@+id/container"
     >
 
-    <fragment
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:name="com.example.anton.rssparse2.fragments.Course"
-    tools:layout="@layout/course_fragment"
-    android:id="@+id/course_fragment" />
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/course_fragment">
+    </LinearLayout>
 
     <fragment
         android:layout_width="wrap_content"

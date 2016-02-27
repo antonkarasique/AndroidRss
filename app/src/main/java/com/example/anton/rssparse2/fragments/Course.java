@@ -16,7 +16,6 @@ import com.google.gson.GsonBuilder;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 
@@ -55,7 +54,6 @@ public class Course extends Fragment {
         uah.setText("EUR=" + json[0].buy);
         usd.setText("RUR=" + json[1].buy);
         eur.setText("USD=" + json[2].buy);
-
 
     }
 
