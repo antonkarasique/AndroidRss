@@ -18,6 +18,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLConnection;
 
 /**
  * Created by Anton on 24.02.2016.
@@ -63,33 +64,19 @@ public class Course extends Fragment {
         @Override
         protected String doInBackground(String... params) {
 
-            URL url = null;
-            try {
-                url = new URL(params[0]);
-
             StringBuilder sb = new StringBuilder();
-
-            HttpURLConnection http = (HttpURLConnection) url.openConnection();
             try {
-                BufferedReader br = new BufferedReader(new InputStreamReader(http.getInputStream()));
-                char[] buf = new char[1000000];
-
-                int r = 0;
-                do {
-                    if ((r = br.read(buf)) > 0)
-                        sb.append(new String(buf, 0, r));
-                } while (r > 0);
-            } finally {
-                http.disconnect();
+                URL pageURL = new URL(params[0]);
+                String inputLine;
+                URLConnection uc = pageURL.openConnection();
+                BufferedReader buff = new BufferedReader(new InputStreamReader(uc.getInputStream()));
+                while ((inputLine = buff.readLine()) != null) {
+                    sb.append(inputLine);
+                }
+                buff.close();
+            } catch (Exception e) {
             }
             return sb.toString();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return null;
         }
-
-        }
-
-
+    }
 }
